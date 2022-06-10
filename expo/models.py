@@ -1,3 +1,4 @@
+import email
 from django.db import models
 from django.db import models
 import datetime as dt
@@ -15,7 +16,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
     bio = models.CharField(max_length=50,default="I love this Expo!")
     location = models.CharField(max_length=60, blank=True)
-    contact = models.EmailField(max_length=100, blank=True)
+    email = models.EmailField(max_length=100, blank=True)
     
     
     def __str__(self):
