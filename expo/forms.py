@@ -17,3 +17,10 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ('name','bio','email','location','pic')
+
+
+class ProjectForm(forms.ModelForm):
+    class Meta:
+        model = Project
+        fields = ['project_image','project_name','project_description','project_url','language']
+ 

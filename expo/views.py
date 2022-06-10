@@ -35,7 +35,7 @@ def login_user(request):
             user=authenticate(request,username=usern,password=passw)
             if user is not None:
                 login(request,user)
-                return redirect(register)
+                return redirect(index)
             else:
                 return HttpResponse('Such a user does not exist')
         else:
@@ -66,4 +66,21 @@ def update_profile(request):
         form=ProfileForm()
 
     return render(request, 'profile/update.html', locals())
-    
+
+
+def project_add(request):  
+    current_user = request.user
+    if request.method == 'POST':   
+        form = ProjectForm(request.POST, request.FILES)
+        if form.is_valid(): 
+            post = form.save(commit=False) 
+            post.user=request.user
+            post.profile=request.user.profile
+            post.save() 
+            return redirect(index) 
+              
+            # return HttpResponseRedirect(request.path_info)  
+    else:  
+        form = ProjectForm()  
+  
+    return render(request, 'project.html', locals())  

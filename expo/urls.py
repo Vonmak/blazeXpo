@@ -7,6 +7,7 @@ urlpatterns=[
     path('login/',login_user),
     path('logout',logout_user),
     re_path(r'^profile/(\d+)',profile, name='profile'),
-    path('profile/',update_profile,name ='newprofile')
+    path('profile/',update_profile,name ='newprofile'),
+    path('project/', project_add, name = "project"),
  
 ]
