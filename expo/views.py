@@ -6,6 +6,12 @@ from django.contrib.auth.models import User
 from .models import *
 
 # Create your views here.
+def index(request):
+    projects = Project.objects.all().order_by('-date')
+    profiles= Profile.objects.all()
+    return render(request,'index.html',locals())
+
+
 def register(request):
     form = RegistrationForm
     if request.method == 'POST':
@@ -44,6 +50,20 @@ def logout_user(request):
 def profile(request, id):  
     user=User.objects.filter(id=id).first()
     profile = Profile.objects.get(user=id)
-    # projects = request.user.projects.all().order_by('date')
-    projects = Project.filter_by_user(user.id).order_by('date')
+    projects = Project.filter_by_user(user.id).order_by('-date')
     return render(request,"profile/profile.html",locals())
+
+def update_profile(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
+        if form.is_valid():
+            profile =form.save(commit=False)
+            profile.user = current_user
+            profile.save()
+            return redirect(index)
+    else:
+        form=ProfileForm()
+
+    return render(request, 'profile/update.html', locals())
+    
