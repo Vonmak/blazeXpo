@@ -4,51 +4,57 @@
     <div class="col-md-12 prof2">
       <div class="row prof3">
         <div class="col-md-4 prof4">
-          {% if profile.photo %}
+          {% if profile.pic %}
           <ul class="list-inline">
-          <li class="list-inline-item">
-            <img
-            class="img-fluid rounded-pill index-profile"
-            src="{{profile.pic.url}}"
-            alt="photo"/>
+            <li class="list-inline-item">
+              <img
+                class="img-fluid rounded-pill index-profile"
+                src="{{profile.pic.url}}"
+                alt="photo"
+              />
             </li>
-            <li class="list-inline-item"><h4>{{profile.user|title}}</h4></li>
-           
+            <li class="list-inline-item"><h4>{{profile.name|title}}</h4></li>
+            <li class="list-inline-item"><p>{{profile.bio|title}}</p></li>
           </ul>
-          <p>{{profile.bio|title}}</p>
+
           {% else %}
           <ul class="list-inline">
             <li class="list-inline-item">
               <img class="img-fluid rounded-pill index-profile" src=" " />
-              </li>
-              <li class="list-inline-item"><h4>{{profile.user|title}}</h4></li>
-              <p>{{profile.bio|title}}</p>
-            </ul>
-          {% endif %} 
+            </li>
+            <li class="list-inline-item"><h4>{{profile.user|title}}</h4></li>
+            <li class="list-inline-item"><p>{{profile.bio|title}}</p></li>
+          </ul>
+          {% endif %}
         </div>
         <div class="col-md-5 prof6">
-           <p><span class="font-weight-bold">{{projects.count}} </span> Projects</p> 
-           <p>Contact info: <strong><a href="{{profile.email}}">{{profile.email}}</a></strong> </p>
+          <p>
+            <span class="font-weight-bold">{{projects.count}} </span> Projects
+          </p>
+          <p>
+            Contact info: <strong><a href="">{{profile.email}}</a></strong>
+          </p>
+          <a href="/profile" class="btn btn-primary"> Update Profile </a>
         </div>
       </div>
     </div>
     <hr />
     <div class="row prof8">
-      {% if projects %}
-      {% for project in projects %}
-      <div class="col-md-2 prof9"> 
-        <div class="card prof10" >
-          <img src="{{project.project_image.url}}" alt="Image" class="card-img-top prof-image" />
+      {% if projects %} {% for project in projects %}
+      <div class="col-md-2 prof9">
+        <div class="card prof10">
+          <img
+            src="{{project.project_image.url}}"
+            alt="Image"
+            class="card-img-top prof-image"
+          />
           <p>{{project.project_name}}</p>
-          <p></p>
-          <a href="{{project.project_url}}">{{project.project_url}}</a>
-
+          <p><a href="{{project.project_url}}">{{project.project_url}}</a></p>
         </div>
-
       </div>
-     {% endfor %}{% else %}
-     <h1 class="text-center">
-     No Projects Posted Yet...</h1>{% endif %}
+      {% endfor %}{% else %}
+      <h1 class="text-center">No Projects Posted Yet...</h1>
+      {% endif %}
     </div>
   </div>
 
