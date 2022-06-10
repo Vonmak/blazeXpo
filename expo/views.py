@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect, HttpResponseRedirect, get_object_or_404
 from django.http import HttpResponse
-from .forms import RegistrationForm, LoginForm
+from .forms import *
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
+from .models import *
 
 # Create your views here.
 def register(request):
@@ -34,3 +36,14 @@ def login_user(request):
             return HttpResponse("Form is not Valid")
     
     return render(request,'auth/login.html',locals())
+
+def logout_user(request):
+    logout(request)
+    return redirect('/login')
+
+def profile(request, id):  
+    user=User.objects.filter(id=id).first()
+    profile = Profile.objects.get(user=id)
+    # projects = request.user.projects.all().order_by('date')
+    projects = Project.filter_by_user(user.id).order_by('date')
+    return render(request,"profile/profile.html",locals())
