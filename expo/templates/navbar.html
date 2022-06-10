@@ -1,0 +1,40 @@
+<nav class="navbar navbar-inverse bg bg-dark" style='height:10vh'>
+    <div class="container-fluid text-white">
+      <div class="navbar-header">
+        <a class="navbar-brand text-white" href="/">BlazeXpo</a>
+      </div>
+      <div class="navbar-end">
+        <ul class="list-inline">
+          <li class="list-inline-item">
+            <div class="nav-search">
+              <form
+                class="form-inline my-2 my-lg-0"
+                role="search"
+                action=""
+              >
+                <input
+                  class="form-control my-2 my-sm-0 search-input"
+                  name="username"
+                  type="search"
+                  placeholder="Search Users/Projects"
+                  aria-label="Search"
+                />
+              </form>
+            </div>
+          </li>
+          <li class="list-inline-item">
+            {% if user.is_authenticated %}
+            <a class="navbar-brand text-white" href="/profile/{{user.profile.user.id}}"
+              >{{user.username | title}}</a
+            >
+            <a class="navbar-brand text-white" href="/logout">Logout</a>
+            {% else %}
+            <a class="navbar-brand text-white" href="/register">Register</a>
+            <a class="navbar-brand text-white" href="/login">Login</a>
+            {% endif %}
+          </li></ul
+        >
+      </div>
+    </div>
+  </nav>
+  

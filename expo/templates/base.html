@@ -14,6 +14,7 @@
     {%endblock%} {%block scripts%} {%bootstrap_javascript%} {%endblock%}
   </head>
   <body class="body">
-   {% block content %} {%endblock%}
+    {% include 'navbar.html' %}
+    {% block content %} {%endblock%}
   </body>
 </html>
