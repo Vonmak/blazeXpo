@@ -1,10 +1,12 @@
 from django.urls import path, re_path
-from . import views
+from .views import *
 
 urlpatterns=[
-    path('register/',views.register),
-    path('login/',views.login_user),
-    path('logout',views.logout_user),
-    re_path(r'^profile/(\d+)', views.profile, name='profile'),
+    path('',index, name='index'),
+    path('register/',register),
+    path('login/',login_user),
+    path('logout',logout_user),
+    re_path(r'^profile/(\d+)',profile, name='profile'),
+    path('profile/',update_profile,name ='newprofile')
  
 ]
