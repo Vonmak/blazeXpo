@@ -12,4 +12,8 @@ class RegistrationForm( UserCreationForm, forms.ModelForm):
 class LoginForm(forms.Form):
     email=forms.CharField(max_length=50)
     password=forms.CharField(max_length=20, widget=forms.PasswordInput)
-   
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ('name','bio','email','location','pic')
