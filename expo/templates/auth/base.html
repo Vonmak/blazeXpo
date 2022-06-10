@@ -1,0 +1,14 @@
+{%load static %} {% load bootstrap5 %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Instagram</title>
+    {%block styles%} {%bootstrap_css%}
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}" />
+    {%endblock%} {%block scripts%} {%bootstrap_javascript%} {%endblock%}
+  </head>
+  <body class="body">
+    {% block content %} {%endblock%}
+  </body>
+</html>
