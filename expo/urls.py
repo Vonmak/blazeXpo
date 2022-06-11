@@ -9,5 +9,6 @@ urlpatterns=[
     re_path(r'^profile/(\d+)',profile, name='profile'),
     path('profile/',update_profile,name ='newprofile'),
     path('project/', project_add, name = "project"),
- 
+    path('search/',search, name='search'),
+    path('search/',search_results, name='search'),
 ]
