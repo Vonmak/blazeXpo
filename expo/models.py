@@ -79,7 +79,12 @@ class Project(models.Model):
     def filter_by_user(cls, user):
         projects = cls.objects.filter(user__id__icontains=user).all()
         return projects
-      
+     
+    @classmethod  
+    def search_by_project_name(cls, search_term):
+        projects = cls.objects.filter(project_name__icontains=search_term)
+        return projects
+
     
 class Rating(models.Model):
     rating = (
