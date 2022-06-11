@@ -1,0 +1,30 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container">
+  <div class="row">
+    {% if searched_projects %} {% for result in searched_projects %} {% if result.profile.pic %}
+
+    <img src="{{result.project_image.url}}" class="img-fluid rounded-pill index-profile" alt="image" />
+    {% else %}
+    <img src="/static/img/avi.png" alt="avatar" /><br><br>
+    {% endif %}
+    {% if results %} {% for result in results %} {% if result.profile.pic %}
+
+    <img src="{{result.project_image.url}}" class="img-fluid rounded-pill index-profile" alt="image" />
+    {% else %}
+    <img src="/static/img/avi.png" alt="avatar" /><br><br>
+    {% endif %}
+
+    <ul style="list-style: none">
+      <li class="owner">{{result.profile.owner|title}}</li><br><br>
+      <li style="list-style: none">
+        <a class="btn btn-primary" href="/look/{{result.profile.id}}">explore</a>
+      </li>
+    </ul>
+    {% endfor %} {% else %}
+    <div class="col-md-12 text-center">
+      <h4 class="font1">Not found</h4>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
