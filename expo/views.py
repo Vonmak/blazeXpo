@@ -84,3 +84,29 @@ def project_add(request):
         form = ProjectForm()  
   
     return render(request, 'project.html', locals())  
+
+def search(request):
+    profiles = User.objects.all()
+
+    if 'username' in request.GET and request.GET['username']:
+        search_term = request.GET.get('username')
+        results = User.objects.filter(username__icontains=search_term)
+        # results = User.objects.filter(project_name__icontains=search_term)
+        print(results)
+
+        return render(request,'search.html',locals())
+
+    return redirect(index)
+
+def search_results(request):
+    # title=Category.name
+    if 'project_name' in request.GET and request.GET["project_name"]:
+        search_term = request.GET.get("project_name")
+        searched_projects = Project.search_by_project_name(search_term)
+        message = f"{search_term}"
+        # print(searched_images)
+        return render(request, 'search.html',locals())
+
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'search.html',{"message":message})
