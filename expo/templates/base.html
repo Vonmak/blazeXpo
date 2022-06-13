@@ -3,18 +3,23 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Instagram</title>
+    <title>BlazeXpo</title>
     <!-- CSS only -->
     {%block styles%} {%bootstrap_css%}
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Akronim&family=Creepster&family=Diplomata+SC&family=Roboto:wght@300;400;500;700;900&family=Rubik+Moonrocks&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
     {%endblock%} {%block scripts%} {%bootstrap_javascript%} {%endblock%}
   </head>
   <body class="body">
-    {% include 'navbar.html' %}
-    {% block content %} {%endblock%} {% include 'footer.html' %}
+    {% include 'navbar.html' %} {% block content %} {%endblock%} {% include 'footer.html' %}
   </body>
 </html>
