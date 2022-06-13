@@ -1,5 +1,5 @@
-{% extends 'base.html'%}{%block content%}
-<div class="container text-dark">
+{% extends 'base.html'%}{% load static %}{%block content%}
+<div class="container main-profile text-dark">
   <div class="row prof1">
     <div class="col-md-12 prof2">
       <div class="row prof3">
@@ -20,7 +20,10 @@
           {% else %}
           <ul class="list-inline">
             <li class="list-inline-item">
-              <img class="img-fluid rounded-pill index-profile" src=" " />
+              <img
+                class="img-fluid rounded-pill index-profile"
+                src="{% static 'images/starating.jpeg'%}"
+              />
             </li>
             <li class="list-inline-item"><h4>{{profile.user|title}}</h4></li>
             <li class="list-inline-item"><p>{{profile.bio|title}}</p></li>
@@ -28,13 +31,13 @@
           {% endif %}
         </div>
         <div class="col-md-5 prof6">
-          <p>
+          <li class="list-inline-item">
             <span class="font-weight-bold">{{projects.count}} </span> Projects
-          </p>
-          <p>
+          </li>
+          <li class="list-inline-item">
             Contact info: <strong><a href="">{{profile.email}}</a></strong>
-          </p>
-          <a href="/profile" class="btn btn-primary"> Update Profile </a>
+          </li>
+          <a href="/profile" class="btn btn-outline-info"> Update Profile </a>
         </div>
       </div>
     </div>
@@ -48,8 +51,17 @@
             alt="Image"
             class="card-img-top prof-image"
           />
-          <p>{{project.project_name}}</p>
-          <p><a href="{{project.project_url}}">{{project.project_url}}</a></p>
+          <br />
+          <ul class="list-inline">
+            <li class="list-inline-item">{{project.project_name|title}}</li>
+            <li class="list-inline-item">
+              <a
+                href="{{project.project_url}}"
+                class="btn btn-outline-info btn-sm"
+                ><small>Visit Site</small></a
+              >
+            </li>
+          </ul>
         </div>
       </div>
       {% endfor %}{% else %}
@@ -57,6 +69,5 @@
       {% endif %}
     </div>
   </div>
-
-  {% endblock %}
 </div>
+{% endblock %}
