@@ -71,9 +71,6 @@ def profile(request, id):
     user=User.objects.filter(id=id).first()
     profile = Profile.objects.get(user=id)
     projects = Project.filter_by_user(user.id).order_by('-date')
-    return render(request,"profile/profile.html",locals())
-
-def update_profile(request):
     current_user = request.user
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
@@ -84,8 +81,8 @@ def update_profile(request):
             return redirect(index)
     else:
         form=ProfileForm()
-
-    return render(request, 'profile/update.html', locals())
+        
+    return render(request,"profile/profile.html",locals())
 
 
 def search(request):

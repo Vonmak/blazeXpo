@@ -7,8 +7,6 @@ urlpatterns=[
     path('login/',login_user),
     path('logout',logout_user),
     re_path(r'^profile/(\d+)',profile, name='profile'),
-    path('profile/',update_profile,name ='newprofile'),
-    # path('', project_add, name = "project"),
     path('search/',search, name='search'),
     path('search/',search_results, name='search'),
     # path('api/projects/', ProjectList.as_view()),

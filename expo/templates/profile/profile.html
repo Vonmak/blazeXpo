@@ -37,7 +37,15 @@
           <li class="list-inline-item">
             Contact info: <strong><a href="">{{profile.email}}</a></strong>
           </li>
-          <a href="/profile" class="btn btn-outline-info"> Update Profile </a>
+          <li class="list-inline-item">
+            <a
+              href="/profile"
+              class="btn btn-outline-info"
+              data-bs-toggle="modal"
+              data-bs-target="#edit"
+              >Edit Profile</a
+            >
+          </li>
         </div>
       </div>
     </div>
@@ -70,4 +78,71 @@
     </div>
   </div>
 </div>
+<!-- The Modal -->
+<div class="modal" id="edit">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Update Profile</h4>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+        ></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <form method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="name" class="form-label">{{form.name.label}}:</label
+            ><br />
+            {{form.name}}
+          </div>
+          <div class="form-group">
+            <label for="pic" class="form-label">{{form.pic.label}}:</label
+            ><br />
+            {{form.pic}}
+          </div>
+          <div class="form-group">
+            <label for="bio" class="form-label">{{form.bio.label}}:</label
+            ><br />
+            {{form.bio}}
+          </div>
+          <div class="form-group">
+            <label for="email" class="form-label">{{form.email.label}}:</label
+            ><br />
+            {{form.email}}
+          </div>
+          <div class="form-group">
+            <label for="location" class="form-label"
+              >{{form.location.label}}:</label
+            ><br />
+            {{form.location}}
+          </div>
+
+          <br />
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button class="btn btn-outline-info btn-md" type="submit">
+              Edit
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-outline-danger"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 {% endblock %}
