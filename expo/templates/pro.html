@@ -1,0 +1,97 @@
+{% extends 'base.html' %}{% block content %}
+<div class="container main">
+  <div class="card display">
+    <h5 class="container mb-4 mt-4">
+      {{ project.project_name |title}} <small>by {{ project.user.username | title}}</small> 
+      <a
+        href="{{ project.project_url }}"
+        style="float: right"
+        class="btn btn-outline-info btn-sm"
+      >
+        Visit
+      </a>
+    </h5>
+
+    <a href="{{ project.project_image.url }}">
+      <div
+        class="container view overlay another"
+        style="background-image:url({{ project.project_image.url }}),  linear-gradient(
+          rgba(0, 0, 0, 0.5), 
+          rgba(0, 0, 0, 0.5)
+        )"
+      >
+        <div class="row">
+          <div class="col-md-12 scores">
+            {% for rating in project.ratings.all %} 
+            {% if forloop.counter is project.ratings.all.count %}
+            <a class="btn btn-outline-info btn-sm rounded-pill"
+              ><h5>{{ rating.score }}</h5>
+              <span class="sc">Scores</span>
+            </a>
+            <a class="btn btn-outline-success btn-sm rounded-pill"
+              ><h5>{{ rating.design_average }}</h5>
+              <span class="sc">Design</span>
+            </a>
+            <a class="btn btn-outline-primary btn-sm rounded-pill" id="u"
+              ><h5>{{ rating.usability_average }}</h5>
+              <span class="sc">Usability</span>
+            </a>
+            <a class="btn btn-outline-warning btn-sm rounded-pill" id="c"
+              ><h5>{{ rating.content_average }}</h5>
+              <span class="sc">Content</span>
+            </a>
+            {% endif %} {% endfor %}
+          </div>
+        </div>
+      </div>
+    </a>
+
+    <div class="card-body">
+      <p>
+        {{ project.project_description |title}}
+        <small style="float: right" class="mr-5">
+          Posted {{ project.date| timesince }} ago.
+        </small>
+      </p>
+      <hr />
+      {% if rating_status %}
+      <p style="color: red">Thanks {{user.username| title}}! Your Ratings on this project have been submitted.</p>
+      <small>We appreciate your input.</small>
+      {% else %} {% if user.is_authenticated %}
+      <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <ul class="list-inline">
+          <li class="list-inline-item">
+            <div class="form-group">
+              <label for="design" class="form-label"
+                >{{form.design.label}}:</label
+              ><br />
+              {{form.design}}
+            </div>
+          </li>
+          <li class="list-inline-item">
+            <div class="form-group">
+              <label for="usability" class="form-label"
+                >{{form.usability.label}}:</label
+              ><br />
+              {{form.usability}}
+            </div>
+          </li>
+          <li class="list-inline-item">
+            <div class="form-group">
+              <label for="content" class="form-label"
+                >{{form.content.label}}:</label
+              ><br />
+              {{form.content}}
+            </div>
+          </li>
+          <li class='list-inline-item'><button class="btn btn-outline-info btn-sm">Rate</button></li>
+        </ul>
+
+        
+      </form>
+      {% endif %} {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}
