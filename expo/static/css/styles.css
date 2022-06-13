@@ -1,48 +1,6 @@
 .body {
-    /* border: 1px solid red; */
     height: 100vh;
-    /* background-color: #cccccc; */
     background-color: #edf2f4;
-}
-
-.main {
-    /* border: 1px solid red; */
-    height: 85vh;
-}
-
-.index-card {
-    background: rgba(120, 120, 120, 0.28);
-    /* background: none; */
-    backdrop-filter: blur(5px);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    filter: brightness(100%);
-    width: 100%;
-}
-
-.index1 {
-    border: 1px solid red;
-    /* height: 89vh; */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    /* align-items: center; */
-    padding: 40px;
-    /* z-index: 2; */
-    /* position: absolute; */
-}
-
-.index2 {
-    border: 1px solid rgb(21, 0, 255);
-    /* height: 89vh; */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    /* z-index: 2; */
-    /* position: absolute; */
 }
 
 .index {
@@ -52,39 +10,35 @@
     background-attachment: fixed;
     background-size: 100%;
     background-color: #cccccc;
-    /* filter: brightness(50%); */
-    /* /* background: brightness(50%); */
-    filter: brightness(50%) saturate(140%);
+    filter: brightness(100%) saturate(200%);
 }
 
-.index::before
-/* .index-back {
-    height: 75vh;
+.index1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 40px;
+}
+
+.index2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.index-card {
+    background: rgba(120, 120, 120, 0.28);
+    border-radius: 8px;
+    backdrop-filter: blur(5px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
-    background-position: center;
-    background-attachment: fixed;
-    background-size: 100%;
-    background-color: #cccccc;
-    filter: brightness(50%);
-    z-index: 1;
-    position: relative;
-    background: brightness(50%);
-} */
-
-.head {
-    margin: 60px;
 }
-
-
-/* .index-api {
-    border: 1px solid rgb(0, 255, 0);
-    z-index: 2;
-    position: absolute;
-    color: #fff
-} */
 
 .index-image {
-    /* border: 1px solid red; */
     height: 300px;
     width: 100%;
     background-repeat: no-repeat;
@@ -95,14 +49,22 @@
     border-radius: 5px;
 }
 
-a {
-    text-decoration: none;
-    color: black;
-}
-
 .index-profile {
     height: 80px;
     width: 80px;
+}
+
+.main {
+    height: 85vh;
+}
+
+.head {
+    margin: 60px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
 }
 
 .pic {
@@ -112,23 +74,19 @@ a {
 
 .down {
     display: flex;
-    /* border: 1px solid rgb(0, 255, 106); */
     border-radius: 5px;
 }
 
 .display {
     margin-top: 10px;
-    /* border: 1px solid rgb(73, 159, 81); */
 }
 
 .another {
-    /* border: 1px solid rgb(129, 73, 159); */
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
     background-size: 100%;
     background-color: #cccccc;
-    /* background-image: linear-gradient( rgb(0, 0, 0), rgb(0, 0, 0)); */
     height: 50vh;
     display: flex;
     justify-content: center;
@@ -136,25 +94,11 @@ a {
 }
 
 .scores {
-    /* border: 1px solid rgb(17, 0, 255); */
     display: flex;
     justify-content: space-around;
     align-items: center;
     width: 100%;
-    /* margin-top: 20%; */
-    /* margin-bottom: 20%; */
-    /* border-radius: 50% */
 }
-
-
-/* .sc {
-    visibility: hidden;
-} */
-
-
-/* .index4:hover {
-    visibility: visible;
-} */
 
 .add1 {
     border: 1px solid rgb(129, 73, 159);
@@ -165,7 +109,6 @@ a {
 }
 
 input {
-    /* border: 1px solid rgb(0, 212, 7); */
     width: 100%;
 }
 
@@ -175,12 +118,10 @@ textarea {
 }
 
 .main-profile {
-    /* border: 1px solid rgb(0, 212, 7); */
     height: 85vh;
 }
 
 .prof6 {
-    /* border: 1px solid rgb(0, 212, 7); */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -188,4 +129,8 @@ textarea {
 
 .prof-image {
     height: 300px;
+}
+
+.search {
+    height: 85vh;
 }
