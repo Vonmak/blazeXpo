@@ -8,13 +8,13 @@
     {%block styles%} {%bootstrap_css%}
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
     />
     <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
     {%endblock%} {%block scripts%} {%bootstrap_javascript%} {%endblock%}
   </head>
   <body class="body">
     {% include 'navbar.html' %}
-    {% block content %} {%endblock%}
+    {% block content %} {%endblock%} {% include 'footer.html' %}
   </body>
 </html>
