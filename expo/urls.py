@@ -7,10 +7,10 @@ urlpatterns=[
     path('login/',login_user),
     path('logout',logout_user),
     re_path(r'^profile/(\d+)',profile, name='profile'),
-    path('search/',search, name='search'),
+    re_path(r'^look/(\d+)', lookup_profile, name='look'),
     path('search/',search_results, name='search'),
-    # path('api/projects/', ProjectList.as_view()),
-    # path('api/profiles/', ProfileList.as_view()),
+    path('api/projects/', ProjectList.as_view()),
+    path('api/profiles/', ProfileList.as_view()),
     path('api/users/', UserList.as_view()),
     path('project/<project>', project, name='project'),
 ]
