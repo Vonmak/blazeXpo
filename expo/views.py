@@ -84,19 +84,14 @@ def profile(request, id):
         
     return render(request,"profile/profile.html",locals())
 
-
-def search(request):
-    profiles = User.objects.all()
-
-    if 'username' in request.GET and request.GET['username']:
-        search_term = request.GET.get('username')
-        results = User.objects.filter(username__icontains=search_term)
-        # results = User.objects.filter(project_name__icontains=search_term)
-        print(results)
-
-        return render(request,'search.html',locals())
-
-    return redirect(index)
+def lookup_profile(request, id):
+    profile = Profile.objects.get(user=id)
+    projects = Project.filter_by_user(id)
+    user_prof = get_object_or_404(User, id=id)
+    if request.user == user_prof:
+      return redirect('profile', id=request.id)
+    
+    return render(request,'profile/profile.html',locals())
 
 def search_results(request):
     if 'project_name' in request.GET and request.GET["project_name"]:
@@ -108,7 +103,7 @@ def search_results(request):
 
     else:
         message = "You haven't searched for any term"
-        return render(request, 'search.html',{"message":message})
+        return render(request, 'pro.html',{"message":message})
 
 
 class UserList(APIView):
@@ -117,6 +112,17 @@ class UserList(APIView):
         serializers = UserSerializer(projects, many=True)
         return Response(serializers.data)
     
+class ProjectList(APIView):
+    def get(self, request, format=None):
+        projects = Project.objects.all()
+        serializers = ProjectSerializer(projects, many=True)
+        return Response(serializers.data)
+    
+class ProfileList(APIView):
+    def get(self, request, format=None):
+        projects = Profile.objects.all()
+        serializers = ProfileSerializer(projects, many=True)
+        return Response(serializers.data)
     
 def project(request, project):
     project = Project.objects.get(project_name=project)
