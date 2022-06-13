@@ -38,13 +38,16 @@
             Contact info: <strong><a href="">{{profile.email}}</a></strong>
           </li>
           <li class="list-inline-item">
+            {% if profile.user.id == user.profile.user.id%}
             <a
-              href="/profile"
-              class="btn btn-outline-info"
-              data-bs-toggle="modal"
-              data-bs-target="#edit"
-              >Edit Profile</a
-            >
+            href="/profile"
+            class="btn btn-outline-info"
+            data-bs-toggle="modal"
+            data-bs-target="#edit"
+            >Edit Profile</a
+          >
+            {% endif %}
+           
           </li>
         </div>
       </div>
