@@ -1,1 +1,118 @@
-{% extends 'base.html' %} {% block content %} {% endblock %}
+{% extends 'base.html' %} {% include 'navbar.html' %}{% load static %} {%block content %}
+<div class="container-fluid">
+  <div
+    class="row index"
+    style="background-image:url({{ project.project_image.url }})"
+  >
+    <div class="col-md-3 index1">
+      <div class="container">
+        <strong>
+          <a href="{% url 'project' project.project_name%}">Site of the day</a>
+        </strong>
+        <small>{{project.date|date}}</small>
+      </div>
+
+      <div class="container bottom-align-text">
+        <a href="{{project.project_url}}" class="btn btn-info btn-md text-white"
+          >Visit Site</a
+        >
+      </div>
+    </div>
+
+    <div class="col-md-6 index2">
+      <div class="index-card">
+        <h1 class="text-white" style="filter: brightness(100%)">
+          <strong>
+            <a
+              href="{% url 'project' project.project_name %}"
+              class="text-white"
+              >{{ project.project_name|title }}</a
+            ></strong
+          >
+        </h1>
+
+        {% for rating in project.ratings.all %} {% if forloop.counter is project.ratings.all.count %}
+        <p class="text-info">
+          BY
+          <strong
+            ><a href="{%url 'profile' project.user.id%}"
+              >{{ project.user.username| upper }}</a
+            >
+          </strong>
+          FROM
+          <strong>{{ project.user.profile.location | upper}}</strong>
+          WITH
+          <strong class="text-dark">{{ rating.score }}</strong>
+        </p>
+        <ul>
+          <a class="btn btn-outline-success btn-sm rounded-pill index4"
+            ><h5>{{ rating.design_average }}</h5>
+            <span class="sc">Design</span>
+          </a>
+          <a class="btn btn-outline-primary btn-sm rounded-pill index5"
+            ><h5>{{ rating.usability_average }}</h5>
+            <span class="sc">Usability</span>
+          </a>
+          <a class="btn btn-outline-warning btn-sm rounded-pill index6"
+            ><h5>{{ rating.content_average }}</h5>
+            <span class="sc">Content</span>
+          </a>
+        </ul>
+        {% endif %} {% endfor %}
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <a href="http://127.0.0.1:8000/api/users/?format=json">API</a>
+    </div>
+  </div>
+
+  <div class="row">
+    <h4 class="mt-4 head">Let's take a look at other posted Projects.</h4>
+
+    {% if projects %} {% for project in projects %}
+    <div class="col-md-4">
+      <div class="card down">
+        <div
+          class="view overlay index-image"
+          style="background-image:url({{ project.project_image.url }})"
+        ></div>
+        <div class="card-body">
+          <h5 class="card-title">
+            <a href="{% url 'project' project.project_name%}"
+              >{{project.project_name|title}}</a
+            >
+          </h5>
+          <p class="card-text">
+            <small
+              >From {{project.user.profile.location}}<span style="float: right"
+                >{{project.date|date}}</span
+              ></small
+            >
+          </p>
+
+          <hr />
+          <p class="card-text">
+            <a href="{% url 'profile' project.user.id%}">
+              {% if project.user.profile.pic.url %}
+              <img
+                src="{{project.user.profile.pic.url}}"
+                class="img-responsive rounded-pill pic"
+                alt="image"
+              />{% else %}<img
+                class="img-fluid rounded-pill pic"
+                src="{% static 'images/starating.jpeg'%}"
+                alt="image"
+              />{% endif %} By {{project.user.username|title}}</a
+            >
+          </p>
+        </div>
+      </div>
+      <br />
+    </div>
+
+    {% endfor %} {% endif %}
+  </div>
+</div>
+
+{% endblock %}
