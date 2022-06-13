@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
-from .models import Profile, Project
+from .models import *
 
 class RegistrationForm( UserCreationForm, forms.ModelForm):
     email=forms.EmailField(max_length=100, required=False)
@@ -24,3 +24,7 @@ class ProjectForm(forms.ModelForm):
         model = Project
         fields = ['project_image','project_name','project_description','project_url','language']
  
+class RatingsForm(forms.ModelForm):
+    class Meta:
+        model = Rating
+        fields = ['design', 'usability', 'content']
