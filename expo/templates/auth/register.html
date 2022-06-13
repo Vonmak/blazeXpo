@@ -1,7 +1,8 @@
-{% extends 'auth/base.html' %}{%block content%}
-<div class="container">
-  <div class="container-fluid register">
-    <h4>Create an Account</h4>
+{% extends 'auth/base.html' %}{% load static %}{%block content%}
+<div class="container main" style="background-image:url({%static 'images/projects.jpeg'%})">
+  <div class="col-md-4"></div>
+  <div class="card col-md-4 register">
+    <h4 class='text-info'>REGISTER</h4>
     <form action="" method="post">
       {% csrf_token %}
       <div class="form-group">
@@ -39,13 +40,14 @@
         {{form.password2}}
       </div>
       <br />
-      <button class="btn btn-primary" type="submit" value="register">
+      <button class="btn btn-outline-info" type="submit" value="register">
         Register
       </button>
     </form>
 
-    <p>Have an Account?<a href="/login">Sign In Here!</a></p>
+    <p>Have an Account?<a href="/login" class="text-info">Sign In Here!</a></p>
   </div>
+  <div class="col-md-4"></div>
 </div>
 
 {%endblock%}
