@@ -10,6 +10,7 @@ from rest_framework.views import APIView
 from .serializer import *
 from rest_framework import status
 from rest_framework import viewsets
+from rest_framework import permissions
 
 # Create your views here.
 def index(request):
@@ -65,7 +66,7 @@ def login_user(request):
 
 def logout_user(request):
     logout(request)
-    return redirect('/login')
+    return redirect('/')
 
 def profile(request, id):  
     user=User.objects.filter(id=id).first()
@@ -105,7 +106,7 @@ def search_results(request):
         message = "You haven't searched for any term"
         return render(request, 'pro.html',{"message":message})
 
-
+permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 class UserList(APIView):
     def get(self, request, format=None):
         projects = User.objects.all()
