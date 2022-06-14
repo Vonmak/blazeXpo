@@ -13,7 +13,7 @@ from rest_framework import viewsets
 
 # Create your views here.
 def index(request):
-    project=Project.objects.latest('date')
+    # project=Project.objects.latest('date')
     projects = Project.objects.all().order_by('-date')
     profiles= Profile.objects.all()
     current_user = request.user
