@@ -7,9 +7,9 @@
     <div class="col-md-3 index1">
       <div class="container text-white">
         <strong>
-          <a class="text-white" href="{% url 'project' project.project_name%}"
+          {% comment %} <a class="text-white" href="{% url 'project' project.project_name%}"
             >Site of the day</a
-          >
+          > {% endcomment %}
         </strong>
         <small>{{project.date|date}}</small>
       </div>
