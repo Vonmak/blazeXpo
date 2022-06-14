@@ -7,9 +7,9 @@
     <div class="col-md-3 index1">
       <div class="container text-white">
         <strong>
-          {% comment %} <a class="text-white" href="{% url 'project' project.project_name%}"
+          <a class="text-white" href="{% url 'project' project.project_name%}"
             >Site of the day</a
-          > {% endcomment %}
+          >
         </strong>
         <small>{{project.date|date}}</small>
       </div>
@@ -24,13 +24,13 @@
     <div class="col-md-6 index2">
       <div class="index-card">
         <h1 class="text-white" style="filter: brightness(100%)">
-          {% comment %} <strong>
+          <strong>
             <a
               href="{% url 'project' project.project_name %}"
               class="text-white"
               >{{ project.project_name|title }}</a
             ></strong
-          > {% endcomment %}
+          >
         </h1>
 
         {% for rating in project.ratings.all %} {% if forloop.counter is project.ratings.all.count %}
