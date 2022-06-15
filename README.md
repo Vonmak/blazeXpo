@@ -4,6 +4,9 @@
 
 ## Live Link
 * [View Site](https://blazexpo.herokuapp.com/)
+* [View main api](https://blazexpo.herokuapp.com/api/users/)
+* [View projects api](https://blazexpo.herokuapp.com/api/projects/)
+* [View Profiles api](https://blazexpo.herokuapp.com/api/profiles/)
 
 
 ## User Story
