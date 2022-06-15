@@ -2,15 +2,32 @@ from django.shortcuts import render, redirect, HttpResponseRedirect, get_object_
 from django.http import HttpResponse
 from .forms import *
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import *
 from django.http import JsonResponse
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializer import *
-from rest_framework import status
-from rest_framework import viewsets
-from rest_framework import permissions
+# from rest_framework import status
+# from rest_framework import viewsets
+from rest_framework.decorators import authentication_classes, permission_classes, renderer_classes, api_view
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.renderers import JSONRenderer
+
+'''
+for testing
+'''
+# # @renderer_classes([JSONRenderer])  #same as the pne provided and commented below
+# class HelloView(APIView):
+#     permission_classes = (IsAuthenticatedOrReadOnly,)
+#     # renderer_classes=(JSONRenderer,)
+#     def get(self, request):
+#         content = {'message': 'Hello, World!'}
+#         return Response(content)
+'''
+end
+'''
 
 # Create your views here.
 def index(request):
@@ -64,10 +81,12 @@ def login_user(request):
     
     return render(request,'auth/login.html',locals())
 
+@login_required(login_url='/login')
 def logout_user(request):
     logout(request)
     return redirect('/')
 
+@login_required(login_url='/login')
 def profile(request, id):  
     user=User.objects.filter(id=id).first()
     profile = Profile.objects.get(user=id)
@@ -106,25 +125,33 @@ def search_results(request):
         message = "You haven't searched for any term"
         return render(request, 'pro.html',{"message":message})
 
-permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+@permission_classes([IsAuthenticatedOrReadOnly])
+@renderer_classes([JSONRenderer])
 class UserList(APIView):
+    # permission_classes = (IsAuthenticatedOrReadOnly,)
+    # renderer_classes=(JSONRenderer,)
     def get(self, request, format=None):
         projects = User.objects.all()
         serializers = UserSerializer(projects, many=True)
         return Response(serializers.data)
-    
+
+@permission_classes([IsAuthenticatedOrReadOnly])
+@renderer_classes([JSONRenderer])
 class ProjectList(APIView):
     def get(self, request, format=None):
         projects = Project.objects.all()
         serializers = ProjectSerializer(projects, many=True)
         return Response(serializers.data)
-    
+
+@permission_classes([IsAuthenticatedOrReadOnly])
+@renderer_classes([JSONRenderer])
 class ProfileList(APIView):
     def get(self, request, format=None):
         projects = Profile.objects.all()
         serializers = ProfileSerializer(projects, many=True)
         return Response(serializers.data)
-    
+ 
+@login_required(login_url='/login') 
 def project(request, project):
     project = Project.objects.get(project_name=project)
     ratings = Rating.objects.filter(user=request.user, project=project).first()

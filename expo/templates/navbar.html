@@ -66,13 +66,6 @@
             </ul>
           </div>
         </li>
-        {% else %}
-        <li class="list-inline-item">
-          <a class="navbar-brand text-white" href="/register">Register</a>
-          <a class="navbar-brand text-white" href="/login">Login</a>
-        </li>
-
-        {% endif %}
         <li class="list-inline-item">
           <!-- Button to Open the Modal -->
           <a
@@ -83,6 +76,14 @@
             >SUBMIT YOUR SITE!</a
           >
         </li>
+        {% else %}
+        <li class="list-inline-item">
+          <a class="navbar-brand text-white" href="/register">Register</a>
+          <a class="navbar-brand text-white" href="/login">Login</a>
+        </li>
+
+        {% endif %}
+      
       </ul>
     </div>
   </div>
