@@ -14,6 +14,7 @@ from .serializer import *
 from rest_framework.decorators import authentication_classes, permission_classes, renderer_classes, api_view
 from rest_framework.permissions import  IsAuthenticated
 from rest_framework.renderers import JSONRenderer
+from random import choice
 
 '''
 for testing
@@ -150,6 +151,18 @@ class ProfileList(APIView):
         projects = Profile.objects.all()
         serializers = ProfileSerializer(projects, many=True)
         return Response(serializers.data)
+
+# picks a random bundle of project data and displays it.
+@api_view(['GET'])
+@renderer_classes([JSONRenderer])
+@permission_classes([IsAuthenticated])
+def random(request):
+    projects=Project.objects.raw('SELECT * FROM expo_project order by random() LIMIT 20;')
+    project=choice(projects)
+   
+    pro=ProjectSerializer(project,many=False)
+
+    return Response(pro.data)
  
 @login_required(login_url='/login') 
 def project(request, project):

@@ -18,5 +18,6 @@ urlpatterns=[
     # path('hello/', HelloView.as_view(), name='hello'),
     # path('api-token-auth/', obtain_auth_token, name='api_token_auth'),
     # path('jwtobt/',TokenObtainPairView.as_view()),
-    # path('jwtref/',TokenRefreshView.as_view())
+    # path('jwtref/',TokenRefreshView.as_view()),
+    path('api/random/',random),
 ]
