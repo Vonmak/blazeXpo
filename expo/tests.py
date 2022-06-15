@@ -45,83 +45,57 @@ class ProfileTest(TestCase):
 
 
 
-# class ProjectTest(TestCase):
-#     '''
-#     test class for Images model
-#     '''
-#     def setUp(self):
-#         '''
-#         test method to create project instances called before all tests
-#         '''
-#         self.new_user = User(username='victor')
-#         self.new_user.save()
+class ProjectTest(TestCase):
+    '''
+    test class for Images model
+    '''
+    def setUp(self):
+        '''
+        test method to create project instances called before all tests
+        '''
+        self.new_user = User(username='victor')
+        self.new_user.save()
         
-#         self.new_project = Project(project_image='images/picture.jpeg', project_name='Image title', project_description='sth random', user=self.new_user, language='python')
-#         self.new_project.save()
-#         self.another_project = Project(project_image='images/photo.jpg', project_name='Another title', project_description='sth else more random', user=self.new_user, language='python')
-#         self.another_project.save()
+        self.new_project = Project(project_image='images/picture.jpeg', project_name='Image title', project_description='sth random', user=self.new_user, language='python')
+        self.new_project.save()
+        self.another_project = Project(project_image='images/photo.jpg', project_name='Another title', project_description='sth else more random', user=self.new_user, language='python')
+        self.another_project.save()
 
-#     def tearDown(self):
-#         '''
-#         test method to delete Project instances after each test is run
-#         '''
-#         Project.objects.all().delete()
+    def tearDown(self):
+        '''
+        test method to delete Project instances after each test is run
+        '''
+        Project.objects.all().delete()
 
-#     def test_save_project(self):
-#         '''
-#         test method to ensure an Project instance has been correctly saved
-#         '''
-#         self.assertTrue(len(Project.objects.all()) == 2)
+    def test_save_project(self):
+        '''
+        test method to ensure an Project instance has been correctly saved
+        '''
+        self.assertTrue(len(Project.objects.all()) == 2)
         
-#     def test_instances(self):
-#         '''
-#         test method to assert instances created during setUp
-#         '''
-#         self.assertTrue(isinstance(self.new_project,Project))
+    def test_instances(self):
+        '''
+        test method to assert instances created during setUp
+        '''
+        self.assertTrue(isinstance(self.new_project,Project))
 
 
 
-#     def test_delete_project(self):
-#         '''
-#         test method to ensure an Image instance has been correctly deleted
-#         '''
-#         self.new_project.delete()
-#         self.assertTrue(len(Project.objects.all()) == 1)
-
-#     def test_get_images(self):
-#         '''
-#         test method to ensure all instances of Image class have been retrieved
-#         '''
-#         projects = Project.get_all()
-#         print(projects)
-#     def test_update_project(self):
-#         '''
-#         test method to ensure an Image instance has been correctly updated
-#         '''
-#         update_test = self.new_project.update_project('theLast')
-#         self.assertEqual(update_test.project_name, 'theLast')
+    def test_delete_project(self):
+        '''
+        test method to ensure an Image instance has been correctly deleted
+        '''
+        self.new_project.delete()
+        self.assertTrue(len(Project.objects.all()) == 1)
 
 
-#     def test_get_project_by_id(self):
-#         '''
-#         test method to ensure Image instances can be retrieved by id
-#         '''
-#         obtained_project = Project.get_project_by_id(self.another_project.id)
-#         print(obtained_project.project_name)
 
-#     def test_search_image(self):
-#         '''
-#         test method to ensure correct searching of an multiple image instances by category
-#         '''
-#         obtained_project = Project.search_projects(self.new_project.project_name)
-#         print(obtained_project) #todo: reference individual instances
-
-#     def test_filter_by_user(self):
-#         '''
-#         test method to obtain image instances by user
-#         '''
-#         obtained_project = Project.filter_by_user(self.another_project.user)
-#         print(obtained_project)
+    def test_filter_by_user(self):
+        '''
+        test method to obtain image instances by user
+        '''
+        obtained_project = Project.filter_by_user(self.another_project.user)
+        print(obtained_project)
 
 
 
