@@ -12,7 +12,7 @@ from .serializer import *
 # from rest_framework import status
 # from rest_framework import viewsets
 from rest_framework.decorators import authentication_classes, permission_classes, renderer_classes, api_view
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import  IsAuthenticated
 from rest_framework.renderers import JSONRenderer
 
 '''
@@ -20,7 +20,7 @@ for testing
 '''
 # # @renderer_classes([JSONRenderer])  #same as the pne provided and commented below
 # class HelloView(APIView):
-#     permission_classes = (IsAuthenticatedOrReadOnly,)
+#     permission_classes = (IsAuthenticated,)
 #     # renderer_classes=(JSONRenderer,)
 #     def get(self, request):
 #         content = {'message': 'Hello, World!'}
@@ -125,17 +125,17 @@ def search_results(request):
         message = "You haven't searched for any term"
         return render(request, 'pro.html',{"message":message})
 
-@permission_classes([IsAuthenticatedOrReadOnly])
-@renderer_classes([JSONRenderer])
+# @permission_classes([IsAuthenticatedOrReadOnly])
+# @renderer_classes([JSONRenderer])
 class UserList(APIView):
-    # permission_classes = (IsAuthenticatedOrReadOnly,)
+    permission_classes = (IsAuthenticated,)
     # renderer_classes=(JSONRenderer,)
     def get(self, request, format=None):
         projects = User.objects.all()
         serializers = UserSerializer(projects, many=True)
         return Response(serializers.data)
 
-@permission_classes([IsAuthenticatedOrReadOnly])
+@permission_classes([IsAuthenticated])
 @renderer_classes([JSONRenderer])
 class ProjectList(APIView):
     def get(self, request, format=None):
@@ -143,7 +143,7 @@ class ProjectList(APIView):
         serializers = ProjectSerializer(projects, many=True)
         return Response(serializers.data)
 
-@permission_classes([IsAuthenticatedOrReadOnly])
+@permission_classes([IsAuthenticated])
 @renderer_classes([JSONRenderer])
 class ProfileList(APIView):
     def get(self, request, format=None):
