@@ -125,10 +125,10 @@ def search_results(request):
         message = "You haven't searched for any term"
         return render(request, 'pro.html',{"message":message})
 
-# @permission_classes([IsAuthenticatedOrReadOnly])
-# @renderer_classes([JSONRenderer])
+@permission_classes([IsAuthenticated])
+@renderer_classes([JSONRenderer])
 class UserList(APIView):
-    permission_classes = (IsAuthenticated,)
+    # permission_classes = (IsAuthenticated,)
     # renderer_classes=(JSONRenderer,)
     def get(self, request, format=None):
         projects = User.objects.all()
